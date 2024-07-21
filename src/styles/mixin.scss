@@ -1,4 +1,6 @@
+// 命名空间，用于避免类名冲突
 $namespace: 'bili';
+// 元素和修饰符的分隔符
 $separatpr: '__';
 
 @mixin b($block) {
