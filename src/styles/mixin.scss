@@ -1,0 +1,20 @@
+$namespace: 'bili';
+$separatpr: '__';
+
+@mixin b($block) {
+  $b: $namespace + '-' + $block;
+  .#{$b} {
+    @content;
+  }
+}
+
+@mixin sub($modifier){
+    $currentSelector:#{
+        & + 
+        $separatpr +
+        $modifier 
+        + ','
+    };
+    #{$currentSelector}{
+        @content;}
+}

@@ -1,6 +1,5 @@
 <template>
-  <header class="ant-layout-header" :style="{ height }">
-    <slot />
+  <header class="ant-layout-header" :style="{ height }"><slot />
   </header>
 </template>
 
