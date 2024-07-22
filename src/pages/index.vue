@@ -61,16 +61,6 @@ const sroll = async () => {
   }
 }
 
-const loadVideos = async () => {
-  loading.value = true
-  try {
-    const newVideos = await getIndexList(current)
-    videos.value = [...videos.value, ...newVideos]
-  } finally {
-    loading.value = false
-  }
-}
-
 onMounted(() => {
   window.addEventListener('scroll', sroll)
 })
