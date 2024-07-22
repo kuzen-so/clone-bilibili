@@ -1,6 +1,6 @@
 <template>
   <Bililayout>
-    <BiliHeader :style="{ background: '#000', height: '155px', color: '#fff' }">
+    <BiliHeader :style="{ background: '#fff', height: '250px', color: '#fff' }">
       <!-- 头部组件 -->
       <PageHeader></PageHeader>
     </BiliHeader>

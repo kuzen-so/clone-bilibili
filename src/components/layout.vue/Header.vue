@@ -1,6 +1,5 @@
 <template>
-  <header class="ant-layout-header" :style="{ height }"><slot />
-  </header>
+  <header class="ant-layout-header" :style="{ height }"><slot /></header>
 </template>
 
 <script setup lang="ts">

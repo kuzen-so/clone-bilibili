@@ -1,5 +1,5 @@
 <template>
-  <main class="ant-layout-content">1
+  <main class="ant-layout-content">
     <slot />
   </main>
 </template>
