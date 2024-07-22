@@ -42,8 +42,6 @@ import { LoadingOutlined } from '@ant-design/icons-vue'
 let current = 0
 let videos = ref<Video[]>([])
 
-let loading = ref(false)
-
 onMounted(async () => {
   videos.value = await getIndexList(current)
 })
