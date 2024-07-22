@@ -99,21 +99,26 @@ function nextpage() {
       }
     }
   }
-  .nav-button {
+  .nav-buttons-wrapper {
     position: absolute;
     bottom: 10px;
+    right: 10px;
+    z-index: 10;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-button {
     background-color: transparent;
     border: none;
     cursor: pointer;
     font-size: 16px;
+    padding: 5px 10px;
+
   }
 
   .prev {
-    right: -360px;
-  }
-
-  .next {
-    right: -400px;
+    margin-right: 20px; 
   }
 }
 </style>
