@@ -55,7 +55,7 @@
           >
         </li>
       </ul>
-      
+
       <!-- header右边布局 -->
       <ul class="right-entry">
         <li class="right-entry-item" v-for="r in rights" :key="r">
@@ -81,7 +81,6 @@
       </a>
     </div>
   </div>
-  
 </template>
 
 <script setup lang="ts">
@@ -178,6 +177,8 @@ const rights = ref(['大会员', '消息', '动态', '收藏', '历史', '创作
     display: flex;
     justify-content: center;
     max-height: 250px;
+    // 超出部分隐藏
+    overflow: hidden;
     .banner {
       widows: 100vw;
     }
