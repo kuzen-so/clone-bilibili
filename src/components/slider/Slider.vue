@@ -31,7 +31,7 @@ import { onMounted, ref } from 'vue'
 
 BScroll.use(Slide)
 
-let nums = ref(4)
+// let nums = ref(4)
 let currentPageIndex = ref(0)
 
 let slider: any = ref()
