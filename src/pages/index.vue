@@ -11,21 +11,24 @@
           </div>
         </a-carousel> -->
       </a-col>
-      <a-col :span="12"> </a-col>
+      <a-col :span="12"> 123</a-col>
     </a-row>
     <!-- 卡片列表 -->
     <a-row :gutter="16">
       <a-col :span="6" v-for="video in videos" :key="video.key" style="margin-top: 16px">
-        <a-card hoverable>
-          <template #actions>
-            <PlayCircleOutlined />
-            <LoadingOutlined @click="watchLater" />
-          </template>
-          <template #cover>
-            <img :src="video.image" alt="" />
-          </template>
-          <a-card-meta :title="video.name" :description="video.text"></a-card-meta>
-        </a-card>
+        <!-- 点击卡片进行页面跳转 -->
+        <router-link :to="'/video/'+video.name">
+          <a-card hoverable>
+            <template #actions>
+              <PlayCircleOutlined />
+              <LoadingOutlined @click="watchLater" />
+            </template>
+            <template #cover>
+              <img :src="video.image" alt="" />
+            </template>
+            <a-card-meta :title="video.name" :description="video.text"></a-card-meta>
+          </a-card>
+        </router-link>
       </a-col>
     </a-row>
     <!-- 稍后看按钮 -->
@@ -155,13 +158,13 @@ function watchLater(e: Event) {
   width: 40px;
   height: 40px;
   border-radius: 10%;
-  text-align: center; 
+  text-align: center;
   line-height: 40px;
   position: fixed;
   right: 10px;
   bottom: 20px;
   // 背景透明
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(255, 255, 255, 0.5);
   cursor: pointer;
   display: none;
 }
