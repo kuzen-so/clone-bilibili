@@ -42,7 +42,7 @@
 
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-import { message } from 'ant-design-vue'
+
 import { ref, reactive, computed } from 'vue'
 interface FormState {
   email: string
@@ -69,14 +69,13 @@ const captcha = ref('http://119.3.230.93:7001/captcha')
 
 // 点击图片验证码发生改变
 function updateCaptcha() {
-    captcha.value = `http://119.3.230.93:7001/captcha?t=${Math.random()}`
-//   captcha.value = `/api/captcha?${Math.random()}`
+  captcha.value = `http://119.3.230.93:7001/captcha?t=${Math.random()}`
+  //   captcha.value = `/api/captcha?${Math.random()}`
 }
 
 // 点击登录按钮事件
 function onFinish(val) {
   console.log('form value', val)
-  
 }
 </script>
 
