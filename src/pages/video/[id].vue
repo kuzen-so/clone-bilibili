@@ -13,9 +13,7 @@ import { ref, onMounted } from 'vue'
 import { faker } from '@faker-js/faker'
 import CommentList from '@/components/comment/CommentList.vue'
 const route = useRoute()
-// console.log(route)
-// const route = useRoute()
-// const { id } = route.params
+
 const player = ref<HTMLElement>()
 // 挂砸播放器
 onMounted(() => {
@@ -36,5 +34,5 @@ const commentData = Array.from({ length: 2000 }, (_, key) => {
     name: faker.internet.displayName()
   }
 })
-// console.log(commentData)
+
 </script>
