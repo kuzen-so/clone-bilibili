@@ -58,8 +58,13 @@
 
       <!-- header右边布局 -->
       <ul class="right-entry">
+        <li v-if="token">
+          <span>kuzen</span>
+        </li>
         <!-- 跳转登陆页面 -->
-        <router-link to="/login">登陆</router-link>
+        <li v-else>
+          <router-link to="/login">登陆</router-link>
+        </li>
         <!-- 普通按钮 -->
         <li class="right-entry-item" v-for="r in rights" :key="r">
           <a href="">{{ r }}</a>
@@ -90,6 +95,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { UploadOutlined } from '@ant-design/icons-vue'
+import { useUserStore } from '@/stores/user'
+
+const { token } = useUserStore()
 const links = ref([
   { name: '番剧', path: '/' },
   { name: '游戏中心', path: '/' },

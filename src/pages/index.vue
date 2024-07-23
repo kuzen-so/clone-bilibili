@@ -13,7 +13,7 @@
       </a-col>
       <a-col :span="12"> </a-col>
     </a-row>
-
+    <!-- 卡片列表 -->
     <a-row :gutter="16">
       <a-col :span="6" v-for="video in videos" :key="video.key" style="margin-top: 16px">
         <a-card hoverable>
@@ -28,7 +28,7 @@
         </a-card>
       </a-col>
     </a-row>
-
+    <!-- 稍后看按钮 -->
     <div class="animate-ball">
       <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
         <div class="animate" v-show="animate.show"></div>
@@ -97,7 +97,7 @@ function beforeEnter(el: Element) {
   ;(el as HTMLElement).style.transform = `translate(-${x}px, ${y}px)`
 }
 // 点击时
-function enter(el: Element,done:()=>void) {
+function enter(el: Element, done: () => void) {
   document.body.offsetHeight
   ;(el as HTMLElement).style.transform = `translate(0,0)`
   el.addEventListener('transitionend', done)

@@ -31,7 +31,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://119.3.230.93:7001/',
+        target:'http://119.3.230.93:7001/',
+        // target: 'http://shengxinjing.cn:7001/',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')

@@ -1,5 +1,7 @@
+// 类型系统首字母大写
+
 export interface LoginData {
-  message: string
+  email: string
   react?: string
   vue?: string
 }
