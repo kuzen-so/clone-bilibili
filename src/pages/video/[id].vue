@@ -1,10 +1,9 @@
 <template>
   <div ref="player"></div>
-  123
 </template>
 
 <script setup lang="ts">
-// import { useRoute } from 'vue-router'
+
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 import { ref, onMounted } from 'vue'
