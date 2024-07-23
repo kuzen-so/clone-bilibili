@@ -34,6 +34,10 @@
         <div class="animate" v-show="animate.show"></div>
       </transition>
     </div>
+    <!-- 回到顶部按钮 -->
+    <div class="backtop" v-backtop="400">
+      <UpSquareOutlined />
+    </div>
 
     <!-- 加载icon -->
     <div class="loading-icon">
@@ -48,7 +52,7 @@ import Bililayout from '@/layouts/default.vue'
 import BiliSlide from '@/components/slider/Slider.vue'
 import { getIndexList } from '@/apis/mock'
 import type { Video } from '@/apis/types'
-import { LoadingOutlined, PlayCircleOutlined } from '@ant-design/icons-vue'
+import { LoadingOutlined, PlayCircleOutlined, UpSquareOutlined } from '@ant-design/icons-vue'
 
 let current = 0
 let videos = ref<Video[]>([])
@@ -145,5 +149,20 @@ function watchLater(e: Event) {
   border-radius: 50%;
   background-color: #fb6299;
   transition: all 1s linear;
+}
+// 回到顶部按钮样式
+.backtop {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  text-align: center; 
+  line-height: 40px;
+  position: fixed;
+  right: 10px;
+  bottom: 20px;
+  // 背景透明
+  background-color: rgba(255,255,255,0.5);
+  cursor: pointer;
+  display: none;
 }
 </style>
