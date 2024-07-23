@@ -6,16 +6,14 @@
 </template>
 
 <script setup lang="ts">
-import {useRoute} from 'vue-router'
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 import { ref, onMounted } from 'vue'
 import { faker } from '@faker-js/faker'
 import CommentList from '@/components/comment/CommentList.vue'
-const route = useRoute()
 
 const player = ref<HTMLElement>()
-// 挂砸播放器
+// 挂载播放器
 onMounted(() => {
   new Player({
     el: player.value,
@@ -26,6 +24,7 @@ onMounted(() => {
     poster: '/02.png'
   })
 })
+
 // 制造评论假数据
 const commentData = Array.from({ length: 2000 }, (_, key) => {
   return {
@@ -34,5 +33,4 @@ const commentData = Array.from({ length: 2000 }, (_, key) => {
     name: faker.internet.displayName()
   }
 })
-
 </script>
