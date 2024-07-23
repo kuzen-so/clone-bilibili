@@ -58,9 +58,13 @@
 
       <!-- header右边布局 -->
       <ul class="right-entry">
+        <!-- 跳转登陆页面 -->
+        <router-link to="/login">登陆</router-link>
+        <!-- 普通按钮 -->
         <li class="right-entry-item" v-for="r in rights" :key="r">
           <a href="">{{ r }}</a>
         </li>
+        <!-- 投稿按钮 -->
         <li>
           <div class="upload-btn">
             <UploadOutlined />
