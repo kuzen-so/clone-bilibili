@@ -18,6 +18,8 @@ declare module 'vue' {
     AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
     ARow: typeof import('ant-design-vue/es')['Row']
     ASpace: typeof import('ant-design-vue/es')['Space']
+    CommentList: typeof import('./src/components/comment/CommentList.vue')['default']
+    CommentList1: typeof import('./src/components/comment/CommentList-1.vue')['default']
     Content: typeof import('./src/components/layout.vue/Content.vue')['default']
     Footer: typeof import('./src/components/layout.vue/Footer.vue')['default']
     Header: typeof import('./src/components/layout.vue/Header.vue')['default']

@@ -1,13 +1,19 @@
 <template>
+  <!-- 播放器 -->
   <div ref="player"></div>
+  <!-- 评论 -->
+  <CommentList :list="commentData" />
 </template>
 
 <script setup lang="ts">
+import {useRoute} from 'vue-router'
 import Player from 'xgplayer'
 import 'xgplayer/dist/index.min.css'
 import { ref, onMounted } from 'vue'
 import { faker } from '@faker-js/faker'
-
+import CommentList from '@/components/comment/CommentList.vue'
+const route = useRoute()
+// console.log(route)
 // const route = useRoute()
 // const { id } = route.params
 const player = ref<HTMLElement>()
@@ -23,13 +29,12 @@ onMounted(() => {
   })
 })
 // 制造评论假数据
-const commentData = Array.from({ length: 1000 }, (_, key) => {
+const commentData = Array.from({ length: 2000 }, (_, key) => {
   return {
     key: key,
     text: faker.lorem.paragraph(1),
     name: faker.internet.displayName()
   }
 })
-console.log(commentData);
-
+// console.log(commentData)
 </script>
