@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed } from 'vue'
+import { ref, } from 'vue'
 // import { useStorage } from '@vueuse/core'
 
 // const storage = useStorage('bili-token', '')
