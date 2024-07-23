@@ -12,7 +12,7 @@ export async function userHi():Promise<UserHiResponse>{
 
 
 
-export async function userLoginApi(obj: LoginData): Promise<LoginRes> {
+export async function userLogin(obj: LoginData): Promise<LoginRes> {
   return axios.post('/user/login', obj)
 }
 

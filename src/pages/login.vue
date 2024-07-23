@@ -42,8 +42,10 @@
 
 <script setup lang="ts">
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
-
 import { ref, reactive, computed } from 'vue'
+import { userLogin } from '@/apis/user'
+import SparkMd5 from 'spark-md5'
+
 interface FormState {
   email: string
   password: string
@@ -52,9 +54,9 @@ interface FormState {
 
 // 表格初始值
 const formState = reactive<FormState>({
-  email: '512362074@qq.com',
-  password: '512362074',
-  captcha: ''
+  email: '316783812@qq.com',
+  password: '316783812',
+  captcha:""
 })
 
 // 不输入值不允许点击登录
@@ -64,18 +66,24 @@ const disabled = computed(() => {
 
 //设定验证码
 // 为什么写死了才有验证码
-const captcha = ref('http://119.3.230.93:7001/captcha')
-// const captcha = ref('/api/captcha')
+const captcha = ref('/api/captcha?')
 
 // 点击图片验证码发生改变
 function updateCaptcha() {
-  captcha.value = `http://119.3.230.93:7001/captcha?t=${Math.random()}`
-  //   captcha.value = `/api/captcha?${Math.random()}`
+  captcha.value = `/api/captcha?${Math.random()}`
 }
 
 // 点击登录按钮事件
-function onFinish(val) {
+async function onFinish(val: FormState) {
   console.log('form value', val)
+  //   密码进行加密
+//   const obj: FormState = {
+//     email: val.email,
+//     captcha: val.captcha,
+//     password: SparkMd5.hash(val.password)
+//   }
+//   const ret = await userLogin(obj)
+//   console.log('login ret', ret)
 }
 </script>
 
