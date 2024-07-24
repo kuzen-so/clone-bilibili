@@ -45,7 +45,7 @@ onMounted(() => {
     momentum: false,
     bounce: false
   })
-  slider.value.on('slideWillChange', (page: any) => {
+  slider.value.on('slideWillChange', (page:any) => {
     currentPageIndex.value = page.pageX
   })
 })
@@ -114,11 +114,10 @@ function nextpage() {
     cursor: pointer;
     font-size: 16px;
     padding: 5px 10px;
-
   }
 
   .prev {
-    margin-right: 20px; 
+    margin-right: 20px;
   }
 }
 </style>
