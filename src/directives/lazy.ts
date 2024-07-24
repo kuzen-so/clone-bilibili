@@ -10,9 +10,7 @@ const lazyLoad = {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          if (binding.value) {
-            el.setAttribute('src', binding.value)
-          }
+          binding.value && el.setAttribute('src', binding.value)
           observer.unobserve(el)
         }
       })
