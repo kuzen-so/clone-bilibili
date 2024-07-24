@@ -24,7 +24,7 @@
               <LoadingOutlined @click="watchLater" />
             </template>
             <template #cover>
-              <img :src="video.image" alt="" />
+              <img v-lazy="video.image">
             </template>
             <a-card-meta :title="video.name" :description="video.text"></a-card-meta>
           </a-card>

@@ -3,7 +3,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router/auto'
 import { routes } from 'vue-router/auto-routes'
-import backtup from './directives/backtup'
+import backtop from './directives/backtop'
+import lazyLoad from './directives/lazy'
 
 import { createPinia } from 'pinia'
 
@@ -17,7 +18,8 @@ const router = createRouter({
 
 
 
-app.directive('backtop', backtup)
+app.directive('backtop', backtop)
+app.directive('lazy', lazyLoad)
 app.use(router)
 app.use(createPinia())
 app.mount('#app')
