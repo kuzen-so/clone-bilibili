@@ -28,16 +28,18 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
+  optimizeDeps: {
+    include: ['@ant-design/icons-vue']
+  },
   build: {
-    rollupOptions: {
-      external: ['@ant-design/icons-vue']
+    commonjsOptions: {
+      include: [/node_modules/]
     }
   },
   server: {
     proxy: {
       '/api': {
-        target:'http://119.3.230.93:7001/',
-        // target: 'http://shengxinjing.cn:7001/',
+        target: 'http://119.3.230.93:7001/',
         changeOrigin: true,
         secure: false,
         rewrite: (path) => path.replace(/^\/api/, '')
