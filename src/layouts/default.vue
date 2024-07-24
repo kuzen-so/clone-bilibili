@@ -8,7 +8,7 @@
       <BiliContent><slot></slot></BiliContent>
     </Bililayout>
 
-    <BiliFooter>footer</BiliFooter>
+    <BiliFooter></BiliFooter>
   </Bililayout>
 </template>
 

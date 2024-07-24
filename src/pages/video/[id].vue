@@ -1,8 +1,10 @@
 <template>
+  <Bililayout
+    ><div ref="player"></div>
+    <!-- 评论 -->
+    <CommentList :list="commentData"
+  /></Bililayout>
   <!-- 播放器 -->
-  <div ref="player"></div>
-  <!-- 评论 -->
-  <CommentList :list="commentData" />
 </template>
 
 <script setup lang="ts">
@@ -11,6 +13,7 @@ import 'xgplayer/dist/index.min.css'
 import { ref, onMounted } from 'vue'
 import { faker } from '@faker-js/faker'
 import CommentList from '@/components/comment/CommentList.vue'
+import Bililayout from '@/layouts/default.vue'
 
 const player = ref<HTMLElement>()
 // 挂载播放器
