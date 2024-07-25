@@ -190,6 +190,7 @@ const rights = ref(['动态', '收藏', '历史', '创作中心'])
       .entry-title {
         display: flex;
         align-items: center;
+        flex-direction: row; // 确保图标和文字水平排列
 
         svg {
           margin-right: 4px; /* 根据需要调整间距 */
@@ -230,6 +231,7 @@ const rights = ref(['动态', '收藏', '历史', '创作中心'])
       transition: background-color 0.3s;
     }
   }
+  // banner图
   @include sub(banner) {
     position: relative;
     z-index: 0;
@@ -243,6 +245,7 @@ const rights = ref(['动态', '收藏', '历史', '创作中心'])
       widows: 100vw;
     }
   }
+  // logo图标
   @include sub(logo) {
     position: absolute;
     bottom: 60px;
@@ -253,16 +256,18 @@ const rights = ref(['动态', '收藏', '历史', '创作中心'])
     color: #fff;
     text-decoration: none;
   }
-  //   修改列表样式
+  //  修改列表样式
   li {
     margin-right: 20px;
     list-style-type: none;
     display: list-item;
   }
+  // 登录链接
   .login {
     position: relative;
     right: -28px;
   }
+  // 大会员链接
   .back {
     position: relative;
     right: -18px;
