@@ -11,15 +11,18 @@
     <a-row :gutter="16">
       <a-col :span="6" v-for="video in videos" :key="video.key" style="margin-top: 16px">
         <!-- 点击卡片进行页面跳转 -->
-        <router-link :to="'/video/'+video.name">
+        <router-link :to="'/video/' + video.name">
           <a-card hoverable>
+            <!-- 卡片按钮 -->
             <template #actions>
               <PlayCircleOutlined />
-              <LoadingOutlined @click="watchLater" />
+              <heart-two-tone two-tone-color="#eb2f96" @click="watchLater" />
             </template>
+            <!-- 卡片图片 -->
             <template #cover>
-              <img v-lazy="video.image">
+              <img v-lazy="video.image" />
             </template>
+            <!-- 卡片文字 -->
             <a-card-meta :title="video.name" :description="video.text"></a-card-meta>
           </a-card>
         </router-link>
@@ -49,7 +52,12 @@ import Bililayout from '@/layouts/default.vue'
 import BiliSlide from '@/components/slider/Slider.vue'
 import { getIndexList } from '@/apis/mock'
 import type { Video } from '@/apis/mock'
-import { LoadingOutlined, PlayCircleOutlined, UpSquareOutlined } from '@ant-design/icons-vue'
+import {
+  LoadingOutlined,
+  PlayCircleOutlined,
+  UpSquareOutlined,
+  HeartTwoTone
+} from '@ant-design/icons-vue'
 
 let current = 0
 let videos = ref<Video[]>([])
@@ -118,6 +126,7 @@ function watchLater(e: Event) {
 </script>
 
 <style lang="scss">
+// 卡片大小
 .car-imgs {
   width: 100%;
   height: 400px;
@@ -128,7 +137,7 @@ function watchLater(e: Event) {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-
+// 加载按钮
 .loading-icon {
   display: flex;
   justify-content: center;
@@ -138,8 +147,8 @@ function watchLater(e: Event) {
 
 .animate-ball .animate {
   position: fixed;
-  top: 15px;
-  right: 266px;
+  top: 20px;
+  right: 200px;
   z-index: 100;
   width: 20px;
   height: 20px;

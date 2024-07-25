@@ -205,9 +205,9 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
     }
   }
   @include sub(logo) {
-    position: relative;
-    bottom: 140px;
-    left: 220px;
+    position: absolute;
+    bottom: 60px;
+    left: 80px;
   }
   // 修改标签样式
   a {
@@ -223,13 +223,10 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
   .login {
     position: relative;
     right: -22px;
-   
   }
   .back {
     position: relative;
-    
-    white-space: nowrap;
-    right: -12px; 
+    right: -12px;
   }
 }
 </style>

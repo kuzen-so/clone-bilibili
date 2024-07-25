@@ -110,12 +110,19 @@ async function onFinish(val: FormState) {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #eee;
+  // 找一张图作为登陆背景
+  background-image: url('backimg.png');
+  background-size: cover;
+  background-position: center;
   .login-form {
+    width: 400px;
+    height: 300px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 20px;
     z-index: 10;
+    /* 向上移动 200 像素 */
+    transform: translateY(-200px);
   }
 }
 </style>
