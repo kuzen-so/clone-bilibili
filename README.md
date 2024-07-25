@@ -4,7 +4,7 @@
 
 技术栈使用到:vue3、vite、router、pinia、ant-design、BetterScroll、vuetset、scss、Faker、spark-md5、axios、vueuse、西瓜播放器、Apache ECharts(可视化图表)、Vue-ECharts
 
-最后使用vercel完成部署
+最后通过 [Vercel](https://vercel.com/) 一键部署 [clone-bilibili](https://clone-bilibili-626ejxnze-chumenlus-projects.vercel.app/)。
 
 ### 技术栈
 
