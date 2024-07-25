@@ -111,7 +111,7 @@ async function onFinish(val: FormState) {
   justify-content: center;
   align-items: center;
   // 找一张图作为登陆背景
-  background-image: url('backimg.png');
+  background-image: url('/backimg.png');
   background-size: cover;
   background-position: center;
   .login-form {
