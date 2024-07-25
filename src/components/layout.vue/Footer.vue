@@ -1,7 +1,9 @@
 <template>
   <footer class="ant-layout-footer" :style="{ height }">
-    <hr />
-    @Copyright https://clone-bilibili-626ejxnze-chumenlus-projects.vercel.app
+    <div class="line">
+      <hr />
+      @Copyright https://clone-bilibili-626ejxnze-chumenlus-projects.vercel.app
+    </div>
     <slot />
   </footer>
 </template>

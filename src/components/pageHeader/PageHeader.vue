@@ -25,6 +25,7 @@
             <span> 首页</span></a
           >
         </li>
+
         <li v-for="link in links" :key="link.name">
           <a href="link.url" class="entry-title">{{ link.name }}</a>
         </li>
@@ -58,13 +59,20 @@
 
       <!-- header右边布局 -->
       <ul class="right-entry">
-        <li v-if="token">
-          <span>kuzen</span>
-        </li>
-        <!-- 跳转登陆页面 -->
-        <li v-else>
-          <router-link to="/login">登陆</router-link>
-        </li>
+        <div class="login">
+          <li v-if="token">
+            <span>kuzen</span>
+          </li>
+          <!-- 跳转登陆页面 -->
+          <li v-else>
+            <router-link to="/login">登陆</router-link>
+          </li>
+        </div>
+        <div class="back">
+          <li>
+            <router-link to="/">大会员</router-link>
+          </li>
+        </div>
         <!-- 普通按钮 -->
         <li class="right-entry-item" v-for="r in rights" :key="r">
           <a href="">{{ r }}</a>
@@ -106,7 +114,7 @@ const links = ref([
   { name: '赛事', path: '/' }
 ])
 
-const rights = ref(['大会员', '消息', '动态', '收藏', '历史', '创作中心'])
+const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
 </script>
 
 <style lang="scss">
@@ -210,6 +218,14 @@ const rights = ref(['大会员', '消息', '动态', '收藏', '历史', '创作
     margin-right: 20px;
     list-style-type: none;
     display: list-item;
+  }
+  .login {
+    position: relative;
+    right: -22px; 
+  }
+  .back {
+    position: relative;
+    right: -12px; /* 或者你可以使用具体的值，如 right: 10px; */
   }
 }
 </style>

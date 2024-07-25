@@ -1,46 +1,49 @@
 <template>
-  <div class="login-container">
-    <!-- 表单选择器 -->
-    <div class="login-form">
-      <!-- 登陆表单 -->
-      <a-form :model="formState" @finish="onFinish">
-        <!-- 用户名框 -->
-        <a-form-item name="email" :rules="[{ required: true, message: '用户名' }]">
-          <a-input placeholder="邮箱" v-model:value="formState.email">
-            <!-- 添加一个icon插槽 -->
-            <template #prefix>
-              <UserOutlined></UserOutlined>
-            </template>
-          </a-input>
-        </a-form-item>
+  <Bililayout>
+    <div class="login-container">
+      <!-- 表单选择器 -->
+      <div class="login-form">
+        <!-- 登陆表单 -->
+        <a-form :model="formState" @finish="onFinish">
+          <!-- 用户名框 -->
+          <a-form-item name="email" :rules="[{ required: true, message: '用户名' }]">
+            <a-input placeholder="邮箱" v-model:value="formState.email">
+              <!-- 添加一个icon插槽 -->
+              <template #prefix>
+                <UserOutlined></UserOutlined>
+              </template>
+            </a-input>
+          </a-form-item>
 
-        <!-- 密码框 -->
-        <a-form-item name="passwd" :rules="[{ required: true, message: '请输入密码' }]">
-          <a-input-password placeholder="密码" v-model:value="formState.passwd">
-            <!-- 添加一个icon插槽 -->
-            <template #prefix>
-              <LockOutlined></LockOutlined>
-            </template>
-          </a-input-password>
-        </a-form-item>
+          <!-- 密码框 -->
+          <a-form-item name="passwd" :rules="[{ required: true, message: '请输入密码' }]">
+            <a-input-password placeholder="密码" v-model:value="formState.passwd">
+              <!-- 添加一个icon插槽 -->
+              <template #prefix>
+                <LockOutlined></LockOutlined>
+              </template>
+            </a-input-password>
+          </a-form-item>
 
-        <!-- 验证码框 -->
-        <a-form-item name="captcha" :rules="[{ required: true, message: '请输入验证码' }]">
-          <a-input placeholder="验证码" v-model:value="formState.captcha" style="width: 140px">
-          </a-input>
-          <img height="30" :src="captcha" alt="" @click="updateCaptcha" />
-        </a-form-item>
+          <!-- 验证码框 -->
+          <a-form-item name="captcha" :rules="[{ required: true, message: '请输入验证码' }]">
+            <a-input placeholder="验证码" v-model:value="formState.captcha" style="width: 140px">
+            </a-input>
+            <img height="30" :src="captcha" alt="" @click="updateCaptcha" />
+          </a-form-item>
 
-        <!-- 登陆按钮 -->
-        <a-form-item>
-          <a-button :disabled="disabled" block type="primary" html-type="submit">登陆</a-button>
-        </a-form-item>
-      </a-form>
+          <!-- 登陆按钮 -->
+          <a-form-item>
+            <a-button :disabled="disabled" block type="primary" html-type="submit">登陆</a-button>
+          </a-form-item>
+        </a-form>
+      </div>
     </div>
-  </div>
+  </Bililayout>
 </template>
 
 <script setup lang="ts">
+import Bililayout from '@/layouts/default.vue'
 import { ref, reactive, computed } from 'vue'
 import { UserOutlined, LockOutlined } from '@ant-design/icons-vue'
 import SparkMd5 from 'spark-md5'
@@ -92,7 +95,7 @@ async function onFinish(val: FormState) {
   const ret = await userLoginApi(obj)
   console.log('login ret', ret)
   // 如果登录成功返回首页
-  if(ret.token){
+  if (ret.token) {
     setToken(ret.token)
     router.push('/')
   }
