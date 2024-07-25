@@ -1,5 +1,7 @@
 <template>
   <footer class="ant-layout-footer" :style="{ height }">
+    <hr />
+    @Copyright https://clone-bilibili-626ejxnze-chumenlus-projects.vercel.app
     <slot />
   </footer>
 </template>
