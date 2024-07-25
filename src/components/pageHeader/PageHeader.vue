@@ -126,6 +126,7 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
   position: relative;
   width: 100%;
   background: #fff;
+  white-space: nowrap;
 
   @include sub(bar) {
     position: absolute;
@@ -204,9 +205,9 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
     }
   }
   @include sub(logo) {
-    position: absolute;
-    bottom: 50px;
-    left: 250px;
+    position: relative;
+    bottom: 140px;
+    left: 220px;
   }
   // 修改标签样式
   a {
@@ -221,11 +222,14 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
   }
   .login {
     position: relative;
-    right: -22px; 
+    right: -22px;
+   
   }
   .back {
     position: relative;
-    right: -12px; /* 或者你可以使用具体的值，如 right: 10px; */
+    
+    white-space: nowrap;
+    right: -12px; 
   }
 }
 </style>
