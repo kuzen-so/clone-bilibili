@@ -68,11 +68,34 @@
             <router-link to="/login">登陆</router-link>
           </li>
         </div>
+
         <div class="back">
           <li>
             <router-link to="/">大会员</router-link>
           </li>
         </div>
+        <li>
+          <a class="right-entry__outside" href="//message.bilibili.com" target="_blank">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="right-entry-icon"
+          >
+            <path
+              d="M15.435 17.7717H4.567C2.60143 17.7717 1 16.1723 1 14.2047V5.76702C1 3.80144 2.59942 2.20001 4.567 2.20001H15.433C17.3986 2.20001 19 3.79943 19 5.76702V14.2047C19.002 16.1703 17.4006 17.7717 15.435 17.7717ZM4.567 4.00062C3.59327 4.00062 2.8006 4.79328 2.8006 5.76702V14.2047C2.8006 15.1784 3.59327 15.9711 4.567 15.9711H15.433C16.4067 15.9711 17.1994 15.1784 17.1994 14.2047V5.76702C17.1994 4.79328 16.4067 4.00062 15.433 4.00062H4.567Z"
+              fill="currentColor"
+            ></path>
+            <path
+              d="M9.99943 11.2C9.51188 11.2 9.02238 11.0667 8.59748 10.8019L8.5407 10.7635L4.3329 7.65675C3.95304 7.37731 3.88842 6.86226 4.18996 6.50976C4.48954 6.15544 5.0417 6.09699 5.4196 6.37643L9.59412 9.45943C9.84279 9.60189 10.1561 9.60189 10.4067 9.45943L14.5812 6.37643C14.9591 6.09699 15.5113 6.15544 15.8109 6.50976C16.1104 6.86409 16.0478 7.37731 15.6679 7.65675L11.4014 10.8019C10.9765 11.0667 10.487 11.2 9.99943 11.2Z"
+              fill="currentColor"
+            ></path>
+          </svg>
+          <span class="right-entry-text">消息</span>
+        </a>
+        </li>
         <!-- 普通按钮 -->
         <li class="right-entry-item" v-for="r in rights" :key="r">
           <a href="">{{ r }}</a>
@@ -114,7 +137,7 @@ const links = ref([
   { name: '赛事', path: '/' }
 ])
 
-const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
+const rights = ref(['动态', '收藏', '历史', '创作中心'])
 </script>
 
 <style lang="scss">
@@ -138,6 +161,21 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
     padding: 0 24px;
     height: 64px;
     width: 100%;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+    .right-entry__outside {
+      transform: translateX(10px);
+    }
+
+    .right-entry-icon {
+      margin-bottom: 1px;
+    }
 
     & .left-entry {
       display: flex;
@@ -198,6 +236,7 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
     display: flex;
     justify-content: center;
     max-height: 250px;
+
     // 超出部分隐藏
     overflow: hidden;
     .banner {
@@ -222,11 +261,11 @@ const rights = ref(['消息', '动态', '收藏', '历史', '创作中心'])
   }
   .login {
     position: relative;
-    right: -22px;
+    right: -28px;
   }
   .back {
     position: relative;
-    right: -12px;
+    right: -18px;
   }
 }
 </style>
