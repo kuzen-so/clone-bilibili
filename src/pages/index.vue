@@ -34,11 +34,13 @@
         <div class="animate" v-show="animate.show"></div>
       </transition>
     </div>
+    <div class="laterwatch">
+      <CheckCircleOutlined />
+    </div>
     <!-- 回到顶部按钮 -->
     <div class="backtop" v-backtop="400">
       <UpSquareOutlined />
     </div>
-
     <!-- 加载icon -->
     <div class="loading-icon">
       <LoadingOutlined />
@@ -62,7 +64,8 @@ import {
   LoadingOutlined,
   PlayCircleOutlined,
   UpSquareOutlined,
-  HeartTwoTone
+  HeartTwoTone,
+  CheckCircleOutlined
 } from '@ant-design/icons-vue'
 
 let current = 0
@@ -109,12 +112,12 @@ let animate = reactive<AnimateState>({
 function beforeEnter(el: Element) {
   if (!animate.el) return
   const rect = animate.el.getBoundingClientRect()
-  const targetRect = document.querySelector('.animate-ball')!.getBoundingClientRect()
+  const targetRect = document.querySelector('.laterwatch')!.getBoundingClientRect()
 
   const startX = rect.left + rect.width / 2
   const startY = rect.top + rect.height / 2
-  const endX = targetRect.right - 10
-  const endY = targetRect.top + 10
+  const endX = targetRect.right - 20
+  const endY = targetRect.top 
 
   const translateX = endX - startX
   const translateY = endY - startY
@@ -128,26 +131,27 @@ function beforeEnter(el: Element) {
 }
 // 点击时
 function enter(el: Element, done: () => void) {
-  document.body.offsetHeight; // 触发重排
-  const translateX = parseFloat(el.getAttribute('data-end-x') || '0');
-  const translateY = parseFloat(el.getAttribute('data-end-y') || '0');
-  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.2)`;
-  el.addEventListener('transitionend', done);
+  document.body.offsetHeight // 触发重排
+  const translateX = parseFloat(el.getAttribute('data-end-x') || '0')
+  const translateY = parseFloat(el.getAttribute('data-end-y') || '0')
+  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.2)`
+  el.addEventListener('transitionend', done)
 }
 
 // 点击后
 function afterEnter(el: Element) {
   animate.show = false
   animate.el = null
-  console.log('视频已添加到稍后看:', animate.video)
   animate.video = null
+  // console.log(el);
 }
 
 function watchLater(e: Event) {
-  e.stopPropagation(); // 阻止事件冒泡
-  animate.show = true;
-  animate.el = e.target as Element;
-  animate.video = video;
+  e.preventDefault()
+  e.stopPropagation()
+  animate.show = true
+  animate.el = e.target as Element
+  animate.video = video
 }
 
 //  可视化图表
@@ -226,6 +230,20 @@ const option = ref({
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 // 回到顶部按钮样式
+.laterwatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 10%;
+  text-align: center;
+  line-height: 40px;
+  position: fixed;
+  right: 10px;
+  bottom: 80px;
+  // 背景透明
+  background-color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
 .backtop {
   width: 40px;
   height: 40px;
