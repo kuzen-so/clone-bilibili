@@ -94,40 +94,56 @@ onUnmounted(() => {
 // 稍后看按钮
 
 // const show = ref(true)
-let animate = reactive<{
-  show: boolean
-  el: Element | null
-}>({
+let animate = reactive({
   show: false,
-  el: null
+  el: null as Element | null,
+  video: null as any
 })
 
 // 点击前
 function beforeEnter(el: Element) {
-  let dom = animate.el!
-  let rect = dom.getBoundingClientRect()
-  let x = window.innerWidth - rect.left - 230
-  let y = rect.top - 10
-  // 行首需要先使用一个`;`
-  ;(el as HTMLElement).style.transform = `translate(-${x}px, ${y}px)`
+  if (!animate.el) return
+  const rect = animate.el.getBoundingClientRect()
+  const targetRect = document.querySelector('.animate-ball')!.getBoundingClientRect()
+
+  const startX = rect.left + rect.width / 2
+  const startY = rect.top + rect.height / 2
+  const endX = targetRect.right - 10 // 10px from the right edge
+  const endY = targetRect.top + 10 // 10px from the top
+
+  const translateX = endX - startX
+  const translateY = endY - startY
+
+  el.style.left = `${startX}px`
+  el.style.top = `${startY}px`
+  el.style.transform = `translate(0, 0) scale(1)`
+
+  // 保存结束位置，以便在 enter 函数中使用
+  el.setAttribute('data-end-x', translateX.toString())
+  el.setAttribute('data-end-y', translateY.toString())
 }
 // 点击时
 function enter(el: Element, done: () => void) {
-  document.body.offsetHeight
-  ;(el as HTMLElement).style.transform = `translate(0,0)`
+  document.body.offsetHeight // 触发重排
+  const translateX = parseFloat(el.getAttribute('data-end-x') || '0')
+  const translateY = parseFloat(el.getAttribute('data-end-y') || '0')
+  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.2)`
   el.addEventListener('transitionend', done)
 }
 
 // 点击后
 function afterEnter(el: Element) {
   animate.show = false
-  ;(el as HTMLElement).style.display = 'none'
+  animate.el = null
+  console.log('视频已添加到稍后看:', animate.video)
+  animate.video = null
 }
 
 function watchLater(e: Event) {
+  e.stopPropagation() // 阻止事件冒泡
   animate.show = true
   animate.el = e.target as Element
-  e.preventDefault()
+  animate.video = video
 }
 
 //  可视化图表
@@ -193,7 +209,7 @@ const option = ref({
   align-items: center;
   height: 100px;
 }
-
+// 稍后看动画
 .animate-ball .animate {
   position: fixed;
   top: 20px;
@@ -203,7 +219,7 @@ const option = ref({
   height: 20px;
   border-radius: 50%;
   background-color: #fb6299;
-  transition: all 1s linear;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 // 回到顶部按钮样式
 .backtop {
