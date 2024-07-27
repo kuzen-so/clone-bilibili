@@ -139,7 +139,7 @@ function enter(el: Element, done: () => void) {
 }
 
 // 点击后
-function afterEnter(el: Element) {
+function afterEnter(_el: Element) {
   animate.show = false
   animate.el = null
   animate.video = null
