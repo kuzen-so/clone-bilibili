@@ -5,7 +5,7 @@
         <!-- 轮播图 -->
         <BiliSlide></BiliSlide>
       </a-col>
-      <a-col :span="12"> 123</a-col>
+      <a-col :span="12"><v-chart class="chart" :option="option" /></a-col>
     </a-row>
     <!-- 卡片列表 -->
     <a-row :gutter="16">
@@ -52,6 +52,12 @@ import Bililayout from '@/layouts/default.vue'
 import BiliSlide from '@/components/slider/Slider.vue'
 import { getIndexList } from '@/apis/mock'
 import type { Video } from '@/apis/mock'
+import { use } from 'echarts/core'
+import { CanvasRenderer } from 'echarts/renderers'
+import { PieChart } from 'echarts/charts'
+import { TitleComponent, TooltipComponent, LegendComponent } from 'echarts/components'
+import VChart, { THEME_KEY } from 'vue-echarts'
+import { provide } from 'vue'
 import {
   LoadingOutlined,
   PlayCircleOutlined,
@@ -123,6 +129,49 @@ function watchLater(e: Event) {
   animate.el = e.target as Element
   e.preventDefault()
 }
+
+//  可视化图表
+use([CanvasRenderer, PieChart, TitleComponent, TooltipComponent, LegendComponent])
+
+provide(THEME_KEY, 'light')
+
+const option = ref({
+  title: {
+    text: 'Languages',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'item',
+    formatter: '{a} <br/>{b} : {c} ({d}%)'
+  },
+  legend: {
+    orient: 'vertical',
+    left: 'left',
+    data: ['TypeScript', 'JavaScript', 'Scss', 'Other', 'Vue']
+  },
+  series: [
+    {
+      name: 'Languages',
+      type: 'pie',
+      radius: '55%',
+      center: ['50%', '60%'],
+      data: [
+        { value: 335, name: 'TypeScript' },
+        { value: 310, name: 'JavaScript' },
+        { value: 234, name: 'Scss' },
+        { value: 135, name: 'Other' },
+        { value: 985, name: 'Vue' }
+      ],
+      emphasis: {
+        itemStyle: {
+          shadowBlur: 10,
+          shadowOffsetX: 0,
+          shadowColor: 'rgba(0, 0, 0, 0.5)'
+        }
+      }
+    }
+  ]
+})
 </script>
 
 <style lang="scss">
