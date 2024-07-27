@@ -151,7 +151,7 @@ function watchLater(e: Event) {
   e.stopPropagation()
   animate.show = true
   animate.el = e.target as Element
-  animate.video = video
+  // animate.video = video
 }
 
 //  可视化图表
