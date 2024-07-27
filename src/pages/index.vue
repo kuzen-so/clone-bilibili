@@ -94,10 +94,15 @@ onUnmounted(() => {
 // 稍后看按钮
 
 // const show = ref(true)
-let animate = reactive({
+interface AnimateState {
+  show: boolean
+  el: Element | null
+  video: Video | null
+}
+let animate = reactive<AnimateState>({
   show: false,
-  el: null as Element | null,
-  video: null as any
+  el: null,
+  video: null
 })
 
 // 点击前
@@ -108,8 +113,8 @@ function beforeEnter(el: Element) {
 
   const startX = rect.left + rect.width / 2
   const startY = rect.top + rect.height / 2
-  const endX = targetRect.right - 10 // 10px from the right edge
-  const endY = targetRect.top + 10 // 10px from the top
+  const endX = targetRect.right - 10
+  const endY = targetRect.top + 10
 
   const translateX = endX - startX
   const translateY = endY - startY
@@ -118,17 +123,16 @@ function beforeEnter(el: Element) {
   el.style.top = `${startY}px`
   el.style.transform = `translate(0, 0) scale(1)`
 
-  // 保存结束位置，以便在 enter 函数中使用
   el.setAttribute('data-end-x', translateX.toString())
   el.setAttribute('data-end-y', translateY.toString())
 }
 // 点击时
 function enter(el: Element, done: () => void) {
-  document.body.offsetHeight // 触发重排
-  const translateX = parseFloat(el.getAttribute('data-end-x') || '0')
-  const translateY = parseFloat(el.getAttribute('data-end-y') || '0')
-  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.2)`
-  el.addEventListener('transitionend', done)
+  document.body.offsetHeight; // 触发重排
+  const translateX = parseFloat(el.getAttribute('data-end-x') || '0');
+  const translateY = parseFloat(el.getAttribute('data-end-y') || '0');
+  el.style.transform = `translate(${translateX}px, ${translateY}px) scale(0.2)`;
+  el.addEventListener('transitionend', done);
 }
 
 // 点击后
@@ -140,10 +144,10 @@ function afterEnter(el: Element) {
 }
 
 function watchLater(e: Event) {
-  e.stopPropagation() // 阻止事件冒泡
-  animate.show = true
-  animate.el = e.target as Element
-  animate.video = video
+  e.stopPropagation(); // 阻止事件冒泡
+  animate.show = true;
+  animate.el = e.target as Element;
+  animate.video = video;
 }
 
 //  可视化图表
