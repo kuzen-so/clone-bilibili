@@ -13,10 +13,10 @@
 </template>
 
 <script setup tang="ts">
-import BiliHeader from '@/components/layout.vue/Header.vue'
-import BiliContent from '@/components/layout.vue/Content.vue'
-import BiliFooter from '@/components/layout.vue/Footer.vue'
-import Bililayout from '@/components/layout.vue/Layout.vue'
+import BiliHeader from '@/components/layout/Header.vue'
+import BiliContent from '@/components/layout/Content.vue'
+import BiliFooter from '@/components/layout/Footer.vue'
+import Bililayout from '@/components/layout/Layout.vue'
 import PageHeader from '../components/pageHeader/PageHeader.vue'
 </script>
 
