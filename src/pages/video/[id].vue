@@ -1,10 +1,13 @@
 <template>
-  <Bililayout
-    ><div ref="player"></div>
-    <!-- 评论 -->
-    <CommentList :list="commentData"
-  /></Bililayout>
-  <!-- 播放器 -->
+  <Bililayout>
+    <div class="centered-content">
+      <div ref="player" class="video-player"></div>
+      <!-- 评论 -->
+      <div class="comment-container">
+        <CommentList :list="commentData" />
+      </div>
+    </div>
+  </Bililayout>
 </template>
 
 <script setup lang="ts">
@@ -37,3 +40,27 @@ const commentData = Array.from({ length: 2000 }, (_, key) => {
   }
 })
 </script>
+
+<style scoped>
+.centered-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.video-player {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.comment-container {
+  width: 100%;
+  max-width: 1080px;
+  height: 600px; /* 设置一个固定高度 */
+  margin-top: 20px; /* 在视频播放器和评论之间添加一些间距 */
+  overflow: hidden; /* 确保不会出现额外的滚动条 */
+}
+</style>

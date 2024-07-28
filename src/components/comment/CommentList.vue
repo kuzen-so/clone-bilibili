@@ -1,9 +1,9 @@
 <template>
   <div ref="container" class="container" @scroll="scroll">
     <div class="placeholder" :style="{ height: placeholderHeight + 'px' }"></div>
-    <div class="list" ref="list" :style="{ transform: viewTransform }">
+    <div class="list" :style="{ transform: viewTransform }">
       <div v-for="item in visibleData" :key="item.key" class="item">
-        <span class="comment-user"> {{ item.name }}</span>
+        <span class="comment-user">{{ item.name }}</span>
         <span class="comment-text">{{ item.text }}</span>
       </div>
     </div>
@@ -11,69 +11,66 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, shallowRef, watchEffect } from 'vue'
+
+interface CommentItem {
+  key: number
+  text: string
+  name: string
+}
 
 interface CommentProps {
-  list: {
-    key: number
-    text: string
-    name: string
-  }[]
+  list: CommentItem[]
 }
 
 const props = defineProps<CommentProps>()
 
-// 设定评论高度
 const HEIGHT = 60
 const start = ref(0)
-
-// const list = ref()
-const container = ref()
+const container = ref<HTMLElement | null>(null)
 
 const viewTransform = ref('translate3d(0,0,0)')
-const visibleData = ref<CommentProps['list']>([])
+const visibleData = shallowRef<CommentItem[]>([])
 
-const placeholderHeight = props.list.length * HEIGHT
+const placeholderHeight = ref(0)
+const positions = shallowRef<{ height: number; top: number }[]>([])
 
-const positions = ref<{ height: number; top: number }[]>([])
-
-onMounted(() => {
-  //初始值
-  const containerDom = container.value
-  const viewHeight = containerDom?.clientHeight || 800 //可视区高度
-  const visableCount = Math.ceil(viewHeight / HEIGHT) // 可视区元素数量
-  const end = start.value + visableCount // 可视区最后一个元素的索引位置
-  visibleData.value = props.list.slice(start.value, end)
-  positions.value = props.list.map((_, i) => {
-    return {
-      height: HEIGHT,
-      top: i * HEIGHT //每个元素距离顶部的长度
-    }
-  })
+watchEffect(() => {
+  placeholderHeight.value = props.list.length * HEIGHT
+  positions.value = props.list.map((_, i) => ({
+    height: HEIGHT,
+    top: i * HEIGHT
+  }))
 })
 
-function scroll(e: Event) {
-  const scrollTop = (e.target as HTMLElement).scrollTop
-  const containerDom = container.value
-  const viewHeight = containerDom.clientHeight || 800 //可视区高度
-  // 新的元素
-  const newStart =
-    positions.value?.findIndex((item) => {
-      return item.top + item.height > scrollTop
-    }) || 0
-  const visableCount = Math.ceil(viewHeight / HEIGHT) // 可视区元素数量
-  const end = newStart + visableCount // 可视区最后一个元素的索引位置
-  visibleData.value = props.list.slice(newStart, end)
+onMounted(() => {
+  updateVisibleData()
+})
 
+function updateVisibleData() {
+  const containerElement = container.value
+  if (!containerElement) return
+
+  const scrollTop = containerElement.scrollTop
+  const viewHeight = containerElement.clientHeight
+  const visibleCount = Math.ceil(viewHeight / HEIGHT)
+
+  const newStart = positions.value.findIndex(item => item.top + item.height > scrollTop) || 0
+  const end = newStart + visibleCount
+
+  visibleData.value = props.list.slice(newStart, end)
   start.value = newStart
-  const transformOffset =
-    newStart >= 1 ? positions.value[newStart - 1].top + positions.value[newStart - 1].height : 0
-  // console.log({ transformOffset })
+
+  const transformOffset = newStart > 0 ? positions.value[newStart - 1].top : 0
   viewTransform.value = `translate3d(0,${transformOffset}px,0)`
+}
+
+function scroll() {
+  requestAnimationFrame(updateVisibleData)
 }
 </script>
 
-<style lang="scss">
+<style scoped>
 .container {
   height: 800px;
   position: relative;
@@ -87,20 +84,27 @@ function scroll(e: Event) {
   z-index: -1;
 }
 .list {
+  position: absolute;
   left: 0;
   right: 0;
   top: 0;
-  position: absolute;
 }
 .item {
-  height: 40px;
-  font-size: 20px;
+  height: 60px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid #eee;
 }
-.comment-title {
+.comment-user {
   font-weight: bold;
+  margin-right: 10px;
 }
 .comment-text {
-  display: inline-block;
-  margin-left: 10px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 </style>
