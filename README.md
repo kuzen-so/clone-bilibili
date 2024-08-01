@@ -22,7 +22,7 @@
 - [西瓜视频播放器](https://v2.h5player.bytedance.com/)
 - [Apache ECharts](https://echarts.apache.org/zh/index.html)
 
-最后通过 [Vercel](https://vercel.com/) 一键部署 [clone-bilibili](https://clone-bilibili-626ejxnze-chumenlus-projects.vercel.app/)。
+最后通过 [Vercel](https://vercel.com/) 一键部署 [clone-bilibili](https://clone-bilibili-cgmf3oklr-chumenlus-projects.vercel.app/)。
 
 ### 本地开发
 
